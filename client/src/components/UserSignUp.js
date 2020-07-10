@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Form from "./Form.js";
 /**
  * Renders a signUp Page
  */
 
 export default class UserSignUp extends Component {
   state = {
-    name: '',
-    username: '',
-    password: '',
+    name: "",
+    username: "",
+    password: "",
     errors: [],
   };
 
@@ -26,7 +27,14 @@ export default class UserSignUp extends Component {
             submitButtonText="Sign Up"
             elements={() => (
               <React.Fragment>
-                <input id="name" name="name" type="text" value={name} onChange={this.change} placeholder="Name" />
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={name}
+                  onChange={this.change}
+                  placeholder="Name"
+                />
                 <input
                   id="username"
                   name="username"
@@ -47,7 +55,8 @@ export default class UserSignUp extends Component {
             )}
           />
           <p>
-            Already have a user account? <Link to="/signin">Click here</Link> to sign in!
+            Already have a user account? <Link to="/signin">Click here</Link> to
+            sign in!
           </p>
         </div>
       </div>

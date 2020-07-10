@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Form from "./Form.js";
 
 /**
  * Renders a sign in page
@@ -6,8 +8,8 @@ import React, { Component } from 'react';
 
 export default class UserSignIn extends Component {
   state = {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     errors: [],
   };
 
@@ -45,7 +47,8 @@ export default class UserSignIn extends Component {
             )}
           />
           <p>
-            Don't have a user account? <Link to="/signup">Click here</Link> to sign up!
+            Don't have a user account? <Link to="/signup">Click here</Link> to
+            sign up!
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Renders the header of the app
