@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Renders update, delete, and return to home buttons
+ */
+
 const CourseDetailsActionBar = () => {
   return (
     <div class="actions--bar">

@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 
 import CourseDetailsActionsBar from './CourseDetailsActionsBar.js';
 
-export default class CourseDetails extends React.Component {
+/**
+ * Renders the description and details of a course
+ */
+
+export default class CourseDetails extends Component {
   render() {
     return (
       <React.Fragment>

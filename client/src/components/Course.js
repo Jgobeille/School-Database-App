@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Renders each specific course
+ */
+
 const Course = () => {
   return (
     <div class="grid-33">
