@@ -1,18 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Renders each specific course
  */
 
-const Course = () => {
-  return (
-    <div class="grid-33">
-      <a class="course--module course--link" href="course-detail.html">
-        <h4 class="course--label">Course</h4>
-        <h3 class="course--title">Build a Basic Bookcase</h3>
-      </a>
-    </div>
-  );
-};
+const Course = () => (
+  <div className="grid-33">
+    <Link className="course--module course--link" to="/details">
+      <h4 className="course--label">Course</h4>
+      <h3 className="course--title">Build a Basic Bookcase</h3>
+    </Link>
+  </div>
+);
 
 export default Course;

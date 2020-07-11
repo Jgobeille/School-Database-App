@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Form from "./Form.js";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+// import Form from './Form.js';
 
 /**
  * Renders a sign in page
@@ -8,8 +8,8 @@ import Form from "./Form.js";
 
 export default class UserSignIn extends Component {
   state = {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
     errors: [],
   };
 
@@ -20,7 +20,7 @@ export default class UserSignIn extends Component {
       <div className="bounds">
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
-          <Form
+          {/* <Form
             cancel={this.cancel}
             errors={errors}
             submit={this.submit}
@@ -45,7 +45,38 @@ export default class UserSignIn extends Component {
                 />
               </React.Fragment>
             )}
-          />
+          /> */}
+          <form>
+            <div>
+              <input
+                id="emailAddress"
+                name="emailAddress"
+                type="text"
+                className=""
+                placeholder="Email Address"
+                value=""
+              />
+            </div>
+            <div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                className=""
+                placeholder="Password"
+                value=""
+              />
+            </div>
+            <div className="grid-100 pad-bottom">
+              <button className="button" type="submit">
+                Sign In
+              </button>
+              {/* // eslint-disable-next-line react/button-has-type */}
+              <button className="button button-secondary" type="submit">
+                Cancel
+              </button>
+            </div>
+          </form>
           <p>
             Don't have a user account? <Link to="/signup">Click here</Link> to
             sign up!

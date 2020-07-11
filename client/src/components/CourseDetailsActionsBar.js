@@ -1,29 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Renders update, delete, and return to home buttons
  */
 
-const CourseDetailsActionBar = () => {
-  return (
-    <div class="actions--bar">
-      <div class="bounds">
-        <div class="grid-100">
-          <span>
-            <a class="button" href="update-course.html">
-              Update Course
-            </a>
-            <a class="button" href="#">
-              Delete Course
-            </a>
-          </span>
-          <a class="button button-secondary" href="index.html">
-            Return to List
-          </a>
-        </div>
+const CourseDetailsActionBar = () => (
+  <div className="actions--bar">
+    <div className="bounds">
+      <div className="grid-100">
+        <span>
+          <Link className="button" to="/update">
+            Update Course
+          </Link>
+          <Link className="button" to="#">
+            Delete Course
+          </Link>
+        </span>
+        <Link className="button button-secondary" to="/">
+          Return to List
+        </Link>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default CourseDetailsActionBar;

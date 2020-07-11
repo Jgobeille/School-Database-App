@@ -10,7 +10,7 @@ import React from 'react';
  *@returns error display and submit/cancel buttons of the form
  */
 
-export default (props) => {
+export default props => {
   const { cancel, errors, submit, submitButtonText, elements } = props;
 
   function handleSubmit(event) {
