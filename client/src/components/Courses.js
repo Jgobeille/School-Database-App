@@ -14,7 +14,10 @@ export default class Courses extends Component {
         {/* Loop over all the courses and pass info into course container */}
         <Course />
         <div className="grid-33">
-          <Link className="course--module course--add--module" to="/create">
+          <Link
+            className="course--module course--add--module"
+            to="/courses/create"
+          >
             <h3 className="course--add--title">
               <svg
                 version="1.1"

@@ -32,9 +32,9 @@ class App extends Component {
             <Route exact path="/" component={Courses} />
             <Route path="/signin" component={UserSignIn} />
             <Route path="/signup" component={UserSignUp} />
-            <Route path="/create" component={CreateCourse} />
-            <Route path="/details" component={CourseDetails} />
-            <Route path="/update" component={UpdateCourse} />
+            <Route path="/courses/create" component={CreateCourse} />
+            <Route exact path="/courses/:id" component={CourseDetails} />
+            <Route path="/courses/:id/update" component={UpdateCourse} />
           </Switch>
         </div>
       </Router>

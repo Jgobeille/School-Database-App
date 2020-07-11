@@ -10,10 +10,10 @@ const CourseDetailsActionBar = () => (
     <div className="bounds">
       <div className="grid-100">
         <span>
-          <Link className="button" to="/update">
+          <Link className="button" to="/courses/1/update">
             Update Course
           </Link>
-          <Link className="button" to="#">
+          <Link className="button" to="/">
             Delete Course
           </Link>
         </span>
