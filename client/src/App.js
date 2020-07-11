@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Courses from "./components/Courses";
 import userSignIn from "./components/UserSignIn";
 import UserSignUp from "./components/UserSignUp";
+import UserSignIn from "./components/UserSignIn";
 
 class App extends Component {
   componentDidMount() {
@@ -26,6 +27,8 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Courses} />
+            <Route path="/signin" component={UserSignIn} />
+            <Route path="/signup" component={UserSignUp} />
           </Switch>
         </div>
       </Router>
