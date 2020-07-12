@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Renders the header of the app
+ *
+ *
  */
 
 export default class Header extends PureComponent {
@@ -15,7 +18,9 @@ export default class Header extends PureComponent {
     return (
       <div className="header">
         <div className="bounds">
-          <h1 className="header--logo">Little Home School</h1>
+          <h1 className="header--logo">
+            <Link to="/">Little Home School</Link>
+          </h1>
           <nav>
             <React.Fragment>
               <span>Welcome, Bro!</span>

@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+// Import styling
 import './App.css';
 
-class App extends Component {
-  state = {
-    courses: [],
-  };
+// Import Components
+import Header from './components/Header';
+import Courses from './components/Courses';
+import UserSignUp from './components/UserSignUp';
+import UserSignIn from './components/UserSignIn';
+import CreateCourse from './components/CreateCourse';
+import CourseDetails from './components/CourseDetails';
+import UpdateCourse from './components/UpdateCourse';
 
+class App extends Component {
   componentDidMount() {
     fetch('http://localhost:5000/api/courses')
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         console.log(data);
       })
       .catch(console.log);
   }
+
   render() {
     return (
-      <div>
-        <h1> Hello</h1>
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Courses} />
+            <Route path="/signin" component={UserSignIn} />
+            <Route path="/signup" component={UserSignUp} />
+            <Route path="/courses/create" component={CreateCourse} />
+            <Route exact path="/courses/:id" component={CourseDetails} />
+            <Route path="/courses/:id/update" component={UpdateCourse} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

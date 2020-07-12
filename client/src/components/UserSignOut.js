@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-export default () => {
-  return <Redirect to="/" />;
-};
+// eslint-disable-next-line react/display-name
+export default () => <Redirect to="/" />;
