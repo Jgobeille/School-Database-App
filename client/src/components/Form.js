@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 /**
@@ -10,9 +12,7 @@ import React from 'react';
  *@returns error display and submit/cancel buttons of the form
  */
 
-export default props => {
-  const { cancel, errors, submit, submitButtonText, elements } = props;
-
+const Form = ({ cancel, errors, submit, submitButtonText, elements }) => {
   function handleSubmit(event) {
     event.preventDefault();
     submit();
@@ -61,3 +61,5 @@ function ErrorsDisplay({ errors }) {
 
   return errorsDisplay;
 }
+
+export default Form;
