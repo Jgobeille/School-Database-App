@@ -9,13 +9,14 @@ export class Provider extends Component {
     this.data = new Data();
   }
 
-  render() {
-    return <Context.Provider>{this.props.children}</Context.Provider>;
-  }
-
   signIn = async () => {};
 
   signOut = () => {};
+
+  render() {
+    // this.props.children - add this later
+    return <Context.Provider>{}</Context.Provider>;
+  }
 }
 
 export const { Consumer } = Context;
@@ -26,6 +27,7 @@ export const { Consumer } = Context;
  * @returns {function} A higher-order component.
  */
 
+// eslint-disable-next-line no-shadow
 export default function withContext(Component) {
   return function ContextComponent(props) {
     return (

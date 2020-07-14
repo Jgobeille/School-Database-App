@@ -1,13 +1,72 @@
 import React, { Component } from 'react';
 
 import CourseDetailsActionsBar from './CourseDetailsActionsBar.js';
+import config from '../config';
 
 /**
  * Renders the description and details of a course
  */
 
 export default class CourseDetails extends Component {
+  state = {
+    courseDetails: '',
+  };
+
+  componentDidMount() {
+    this.getCourse();
+  }
+
+  async getCourse() {
+    // eslint-disable-next-line react/prop-types
+    const { match } = this.props;
+    const response = await this.api(match.url, 'GET', null);
+    if (response.status === 200) {
+      return response.json().then(data =>
+        this.setState({
+          courseDetails: data.course,
+        })
+      );
+    }
+    if (response.status === 401) {
+      return null;
+    }
+
+    throw new Error();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  api(path, method = 'GET', body = null) {
+    // concatenates the path request with the base url
+    const url = config.apiBaseUrl + path;
+
+    // sends a request with the HTTP method, as well as the request headers and a stringified body (if body is provided).
+    const options = {
+      method,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    };
+
+    if (body !== null) {
+      options.body = JSON.stringify(body);
+    }
+
+    return fetch(url, options);
+  }
+
   render() {
+    const { courseDetails } = this.state;
+    console.log(courseDetails);
+    const { user } = courseDetails;
+    let materials;
+    // const materialsNeeded = courseDetails.materialsNeeded.split('*');
+
+    if (courseDetails.materialsNeeded) {
+      materials = courseDetails.materialsNeeded.split('*');
+    }
+
+    // eslint-disable-next-line react/destructuring-assignment
+    // eslint-disable-next-line react/prop-types;
     return (
       <React.Fragment>
         <CourseDetailsActionsBar />
@@ -15,53 +74,11 @@ export default class CourseDetails extends Component {
           <div className="grid-66">
             <div className="course--header">
               <h4 className="course--label">Course</h4>
-              <h3 className="course--title">Build a Basic Bookcase</h3>
-              <p>By Joe Smith</p>
+              <h3 className="course--title">{courseDetails.title}</h3>
+              <p>By: {user ? `${user.firstName} ${user.lastName}` : ''}</p>
             </div>
             <div className="course--description">
-              <p>
-                High-end furniture projects are great to dream about. But unless
-                you have a well-equipped shop and some serious woodworking
-                experience to draw on, it can be difficult to turn the dream
-                into a reality.
-              </p>
-              <p>
-                Not every piece of furniture needs to be a museum showpiece,
-                though. Often a simple design does the job just as well and the
-                experience gained in completing it goes a long way toward making
-                the next project even better.
-              </p>
-              <p>
-                Our pine bookcase, for example, features simple construction and
-                it's designed to be built with basic woodworking tools. Yet, the
-                finished project is a worthy and useful addition to any room of
-                the house. While it's meant to rest on the floor, you can
-                convert the bookcase to a wall-mounted storage unit by leaving
-                off the baseboard. You can secure the cabinet to the wall by
-                screwing through the cabinet cleats into the wall studs.
-              </p>
-              <p>
-                We made the case out of materials available at most
-                building-supply dealers and lumberyards, including 1/2 x 3/4-in.
-                parting strip, 1 x 2, 1 x 4 and 1 x 10 common pine and
-                1/4-in.-thick lauan plywood. Assembly is quick and easy with
-                glue and nails, and when you're done with construction you have
-                the option of a painted or clear finish.
-              </p>
-              <p>
-                As for basic tools, you'll need a portable circular saw, hammer,
-                block plane, combination square, tape measure, metal rule, two
-                clamps, nail set and putty knife. Other supplies include glue,
-                nails, sandpaper, wood filler and varnish or paint and shellac.
-              </p>
-              <p>
-                The specifications that follow will produce a bookcase with
-                overall dimensions of 10 3/4 in. deep x 34 in. wide x 48 in.
-                tall. While the depth of the case is directly tied to the 1 x 10
-                stock, you can vary the height, width and shelf spacing to suit
-                your needs. Keep in mind, though, that extending the width of
-                the cabinet may require the addition of central shelf supports.
-              </p>
+              <p>{courseDetails.description}</p>
             </div>
           </div>
           <div className="grid-25 grid-right">
@@ -69,21 +86,16 @@ export default class CourseDetails extends Component {
               <ul className="course--stats--list">
                 <li className="course--stats--list--item">
                   <h4>Estimated Time</h4>
-                  <h3>14 hours</h3>
+                  <h3>{courseDetails.estimatedTime}</h3>
                 </li>
                 <li className="course--stats--list--item">
                   <h4>Materials Needed</h4>
                   <ul>
-                    <li>1/2 x 3/4 inch parting strip</li>
-                    <li>1 x 2 common pine</li>
-                    <li>1 x 4 common pine</li>
-                    <li>1 x 10 common pine</li>
-                    <li>1/4 inch thick lauan plywood</li>
-                    <li>Finishing Nails</li>
-                    <li>Sandpaper</li>
-                    <li>Wood Glue</li>
-                    <li>Wood Filler</li>
-                    <li>Minwax Oil Based Polyurethane</li>
+                    {materials
+                      ? materials
+                          .slice(1)
+                          .map((material, id) => <li key={id}>{material}</li>)
+                      : ''}
                   </ul>
                 </li>
               </ul>

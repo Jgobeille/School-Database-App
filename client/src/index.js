@@ -7,9 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from './Context';
 
 ReactDOM.render(
-  <Provider>
+  <React.StrictMode>
     <App />
-  </Provider>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

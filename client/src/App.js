@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// Import styling
-import './App.css';
-
 // Import Components
 import Header from './components/Header';
 import Courses from './components/Courses';
@@ -14,15 +11,6 @@ import CourseDetails from './components/CourseDetails';
 import UpdateCourse from './components/UpdateCourse';
 
 class App extends Component {
-  componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(console.log);
-  }
-
   render() {
     return (
       <Router>
