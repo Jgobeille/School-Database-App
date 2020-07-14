@@ -25,6 +25,10 @@ export default class CourseDetails extends Component {
 
   render() {
     const { courseDetails } = this.state;
+    // eslint-disable-next-line react/prop-types
+    const { match } = this.props;
+
+    const updateURL = `${match.url}/update`;
 
     const { user } = courseDetails;
     let materials;
@@ -37,7 +41,7 @@ export default class CourseDetails extends Component {
     // eslint-disable-next-line react/prop-types;
     return (
       <React.Fragment>
-        <CourseDetailsActionsBar />
+        <CourseDetailsActionsBar url={updateURL} />
         <div className="bounds course--detail">
           <div className="grid-66">
             <div className="course--header">
