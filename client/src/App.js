@@ -10,6 +10,13 @@ import CreateCourse from './components/CreateCourse';
 import CourseDetails from './components/CourseDetails';
 import UpdateCourse from './components/UpdateCourse';
 
+import withContext from './Context';
+
+// Context routes
+
+const CoursesWithContext = withContext(Courses);
+const CoursesDetailsWithContext = withContext(CourseDetails);
+
 class App extends Component {
   render() {
     return (
@@ -17,11 +24,15 @@ class App extends Component {
         <div>
           <Header />
           <Switch>
-            <Route exact path="/" component={Courses} />
+            <Route exact path="/" component={CoursesWithContext} />
             <Route path="/signin" component={UserSignIn} />
             <Route path="/signup" component={UserSignUp} />
             <Route path="/courses/create" component={CreateCourse} />
-            <Route exact path="/courses/:id" component={CourseDetails} />
+            <Route
+              exact
+              path="/courses/:id"
+              component={CoursesDetailsWithContext}
+            />
             <Route path="/courses/:id/update" component={UpdateCourse} />
           </Switch>
         </div>

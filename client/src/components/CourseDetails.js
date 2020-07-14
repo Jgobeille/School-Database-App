@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import CourseDetailsActionsBar from './CourseDetailsActionsBar.js';
-import config from '../config';
 
 /**
  * Renders the description and details of a course
@@ -13,53 +12,22 @@ export default class CourseDetails extends Component {
   };
 
   componentDidMount() {
-    this.getCourse();
-  }
-
-  async getCourse() {
+    // eslint-disable-next-line react/prop-types
+    const { context } = this.props;
     // eslint-disable-next-line react/prop-types
     const { match } = this.props;
-    const response = await this.api(match.url, 'GET', null);
-    if (response.status === 200) {
-      return response.json().then(data =>
-        this.setState({
-          courseDetails: data.course,
-        })
-      );
-    }
-    if (response.status === 401) {
-      return null;
-    }
-
-    throw new Error();
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  api(path, method = 'GET', body = null) {
-    // concatenates the path request with the base url
-    const url = config.apiBaseUrl + path;
-
-    // sends a request with the HTTP method, as well as the request headers and a stringified body (if body is provided).
-    const options = {
-      method,
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-    };
-
-    if (body !== null) {
-      options.body = JSON.stringify(body);
-    }
-
-    return fetch(url, options);
+    context.data.getCourse(match.url).then(courseData =>
+      this.setState({
+        courseDetails: courseData.course,
+      })
+    );
   }
 
   render() {
     const { courseDetails } = this.state;
-    console.log(courseDetails);
+
     const { user } = courseDetails;
     let materials;
-    // const materialsNeeded = courseDetails.materialsNeeded.split('*');
 
     if (courseDetails.materialsNeeded) {
       materials = courseDetails.materialsNeeded.split('*');

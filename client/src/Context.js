@@ -14,8 +14,16 @@ export class Provider extends Component {
   signOut = () => {};
 
   render() {
-    // this.props.children - add this later
-    return <Context.Provider>{}</Context.Provider>;
+    /**
+     * value object provides the utility methods of the class Data.
+     */
+    const value = {
+      data: this.data,
+    };
+
+    // eslint-disable-next-line react/prop-types
+    const { children } = this.props;
+    return <Context.Provider value={value}>{children}</Context.Provider>;
   }
 }
 

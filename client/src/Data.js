@@ -46,6 +46,18 @@ export default class Data {
     throw new Error();
   }
 
+  async getCourse(url) {
+    const response = await this.api(url, 'GET', null);
+    if (response.status === 200) {
+      return response.json().then(data => data);
+    }
+    if (response.status === 401) {
+      return null;
+    }
+
+    throw new Error();
+  }
+
   async getUser() {
     const response = await this.api(`/users`, 'GET', null);
     if (response.status === 200) {
