@@ -24,7 +24,8 @@ export default class UserSignIn extends Component {
   };
 
   submit = () => {
-    const { context, history } = this.props;
+    const { context, history, location } = this.props;
+    const { from } = location.state || { from: { pathname: '/' } };
     const { email, password } = this.state;
     context.actions
       .signIn(email, password)
@@ -32,7 +33,7 @@ export default class UserSignIn extends Component {
         if (user === null) {
           this.setState(() => ({ errors: ['Sign-in was unsuccessful'] }));
         } else {
-          history.push('/');
+          history.push(from);
         }
       })
       .catch(err => {
