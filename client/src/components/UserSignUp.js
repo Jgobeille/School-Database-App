@@ -11,7 +11,7 @@ export default class UserSignUp extends Component {
   state = {
     firstName: '',
     lastName: '',
-    emailAddress: '',
+    email: '',
     username: '',
     password: '',
     errors: [],
@@ -27,39 +27,35 @@ export default class UserSignUp extends Component {
   };
 
   submit = () => {
-    const { context } = this.props;
+    const { firstName, lastName, email, username, password } = this.state;
 
-    const {
-      firstName,
-      lastName,
-      emailAddress,
-      username,
-      password,
-    } = this.state;
+    const { context, history } = this.props;
+
+    const { actions, data } = context;
 
     // New user payload
     const user = {
       firstName,
       lastName,
-      emailAddress,
+      emailAddress: email,
       username,
       password,
     };
 
-    context.data
+    data
       .createUser(user)
       .then(errors => {
         if (errors.length) {
           this.setState({ errors });
         } else {
-          console.log(
-            `${username} is successfully signed up and authenticated!`
-          );
+          actions.signIn(email, password).then(() => {
+            history.push('/');
+          });
         }
       })
       .catch(err => {
         // handle rejected promises
-        const { history } = this.props;
+
         console.log(err);
         history.push('/error'); // push to history stack
       });
@@ -74,7 +70,7 @@ export default class UserSignUp extends Component {
     const {
       firstName,
       lastName,
-      emailAddress,
+      email,
       username,
       password,
       errors,
@@ -108,10 +104,10 @@ export default class UserSignUp extends Component {
                   placeholder="Last Name"
                 />
                 <input
-                  id="emailAddress"
-                  name="emailAddress"
+                  id="email"
+                  name="email"
                   type="text"
-                  value={emailAddress}
+                  value={email}
                   onChange={this.change}
                   placeholder="Email"
                 />
