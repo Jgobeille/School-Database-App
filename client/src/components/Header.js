@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +15,8 @@ export default class Header extends PureComponent {
      * In the return statement we'll conditionally render the header nav content based on the value of authUser
      * (the authenticatedUser state).
      */
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
 
     return (
       <div className="header">
@@ -22,10 +25,21 @@ export default class Header extends PureComponent {
             <Link to="/">Little Home School</Link>
           </h1>
           <nav>
-            <React.Fragment>
-              <span>Welcome, Bro!</span>
-              <Link to="/signout">Sign Out</Link>
-            </React.Fragment>
+            {authUser ? (
+              <React.Fragment>
+                <span>Welcome, {authUser.firstName}</span>
+                <Link to="/signout">Sign Out</Link>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Link className="signup" to="/signup">
+                  Sign Up
+                </Link>
+                <Link className="signin" to="/signin">
+                  Sign In
+                </Link>
+              </React.Fragment>
+            )}
           </nav>
         </div>
       </div>

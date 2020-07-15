@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -60,13 +59,15 @@ export default class UserSignUp extends Component {
       })
       .catch(err => {
         // handle rejected promises
+        const { history } = this.props;
         console.log(err);
-        this.props.history.push('/error'); // push to history stack
+        history.push('/error'); // push to history stack
       });
   };
 
   cancel = () => {
-    this.props.history.push('/');
+    const { history } = this.props;
+    history.push('/');
   };
 
   render() {

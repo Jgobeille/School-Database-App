@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +22,9 @@ export default class UpdateCourse extends Component {
     const { courseDetails } = this.state;
 
     const { user } = courseDetails;
+    const { match } = this.props;
+
+    const courseDetailsPage = `/courses/${match.params.id}`;
 
     return (
       <div className="bounds course--detail">
@@ -89,7 +93,7 @@ export default class UpdateCourse extends Component {
               <button className="button" type="submit">
                 Update Course
               </button>
-              <Link className="button button-secondary" to="/courses/1">
+              <Link className="button button-secondary" to={courseDetailsPage}>
                 Cancel
               </Link>
             </div>

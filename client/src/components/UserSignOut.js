@@ -1,5 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-// eslint-disable-next-line react/display-name
-export default () => <Redirect to="/" />;
+const UserSignOut = ({ context }) => {
+  const { actions } = context;
+  actions.signOut();
+
+  return <Redirect to="/" />;
+};
+
+export default UserSignOut;

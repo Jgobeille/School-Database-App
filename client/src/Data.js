@@ -15,7 +15,13 @@ export default class Data {
    */
 
   // eslint-disable-next-line class-methods-use-this
-  api(path, method = 'GET', body = null) {
+  api(
+    path,
+    method = 'GET',
+    body = null,
+    requiresAuth = false,
+    credentials = null
+  ) {
     // concatenates the path request with the base url
     const url = config.apiBaseUrl + path;
 
@@ -29,6 +35,30 @@ export default class Data {
 
     if (body !== null) {
       options.body = JSON.stringify(body);
+    }
+
+    // Check if auth is required
+    if (requiresAuth) {
+      /**
+       * The btoa() method creates a base-64 encoded ASCII string from a "string" of data.
+       * We'll use btoa() to encode the email and password credentials passed to the api() method.
+       * The credentials will be passed as an object containing email and password properties.
+       *
+       * The Authorization request header should hold the credentials to authenticate the client with the server.
+       */
+      const encodedCredentials = btoa(
+        `${credentials.email}:${credentials.password}`
+      );
+
+      /**
+       * Sets an Authorization header on each request that requires authentication by adding an Authorization
+       * property to the headers object.
+       *
+       * Example of the authorization header sent:
+       * Authorization: Basic am9lQHNtaXRoLmNvbTpqb2U=
+       */
+
+      options.headers.Authorization = ` Basic ${encodedCredentials}`;
     }
 
     return fetch(url, options);
@@ -58,8 +88,11 @@ export default class Data {
     throw new Error();
   }
 
-  async getUser() {
-    const response = await this.api(`/users`, 'GET', null);
+  async getUser(email, password) {
+    const response = await this.api(`/users`, 'GET', null, true, {
+      email,
+      password,
+    });
     if (response.status === 200) {
       return response.json().then(data => data);
     }
