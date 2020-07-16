@@ -46,7 +46,8 @@ export default class CourseDetails extends Component {
             <div className="actions--bar">
               <div className="bounds">
                 <div className="grid-100">
-                  {context.authenticatedUser.id === courseDetails.userId ? (
+                  {context.authenticatedUser &&
+                  context.authenticatedUser.id === courseDetails.userId ? (
                     <span>
                       <Link className="button" to={updateURL}>
                         Update Course
