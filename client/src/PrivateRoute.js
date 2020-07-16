@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { Consumer } from './Context';
 
 /**
@@ -11,8 +12,8 @@ import { Consumer } from './Context';
  * The function first destructures and renames the component prop in its parameters.
  * It also collects any props that get passed to it in a ...rest variable
  *
- * @param {*} Component - The component passed in that needs user authentication to view
- * @param {*} rest - The components props
+ * @param {function} Component - The component passed in that needs user authentication to view
+ * @param {object} rest - The components props
  */
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

@@ -11,7 +11,9 @@ export default class UpdateCourse extends Component {
     // eslint-disable-next-line react/prop-types
     const { context, match } = this.props;
 
-    context.data.getCourse(`/courses/${match.params.id}/`).then(courseData =>
+    const { data } = context;
+
+    data.getCourse(`/courses/${match.params.id}/`).then(courseData =>
       this.setState({
         courseDetails: courseData.course,
       })
@@ -22,9 +24,18 @@ export default class UpdateCourse extends Component {
     const { courseDetails } = this.state;
 
     const { user } = courseDetails;
-    const { match } = this.props;
+    const { match, context, history } = this.props;
 
     const courseDetailsPage = `/courses/${match.params.id}`;
+
+    // Logic for forbidden routes
+    if (user) {
+      if (context.authenticatedUser.emailAddress !== user.emailAddress) {
+        history.push('/');
+      } else {
+        console.log('matching');
+      }
+    }
 
     return (
       <div className="bounds course--detail">
