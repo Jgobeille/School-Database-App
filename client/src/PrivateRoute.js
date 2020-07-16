@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import { Consumer } from './Context';
 
 /**
