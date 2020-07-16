@@ -25,6 +25,7 @@ export class Provider extends Component {
    *
    * @returns {object} user - Authenticated User Credentials
    */
+
   signIn = async (email, password) => {
     const user = await this.data.getUser(email, password);
     if (user !== null) {
@@ -61,6 +62,7 @@ export class Provider extends Component {
       actions: {
         signIn: this.signIn,
         signOut: this.signOut,
+        getCourse: this.getCourse,
       },
     };
 
