@@ -88,6 +88,18 @@ export default class Data {
     throw new Error();
   }
 
+  async createCourse(course) {
+    const response = await this.api('/users', 'POST', course);
+    if (response.status === 201) {
+      return [];
+    }
+    if (response.status === 400) {
+      return response.json().then(data => data.errors);
+    }
+
+    throw new Error();
+  }
+
   async getUser(email, password) {
     const response = await this.api(`/users`, 'GET', null, true, {
       email,
@@ -104,7 +116,6 @@ export default class Data {
   }
 
   async createUser(user) {
-    console.log(user);
     const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {
       return [];

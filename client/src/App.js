@@ -17,6 +17,7 @@ import PrivateRoute from './PrivateRoute';
 
 // Course context routes
 const CoursesWithContext = withContext(Courses);
+const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const CoursesDetailsWithContext = withContext(CourseDetails);
 
@@ -39,7 +40,10 @@ class App extends Component {
             <Route path="/signin" component={UserSignInWithContext} />
             <Route path="/signup" component={UserSignUpWithContext} />
             <Route path="/signout" component={UserSignOutWithContext} />
-            <PrivateRoute path="/courses/create" component={CreateCourse} />
+            <PrivateRoute
+              path="/courses/create"
+              component={CreateCourseWithContext}
+            />
             <Route
               exact
               path="/courses/:id"
