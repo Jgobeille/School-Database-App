@@ -68,6 +68,8 @@ export default class Data {
    * Gathers all of the courses stored in database
    *
    * @returns {object} response - a resolved promise from database that is then parsed into JSON
+   * @ OR
+   * @returns {null}
    */
   async getCourses() {
     const response = await this.api(`/courses`, 'GET', null);
@@ -140,11 +142,17 @@ export default class Data {
    *
    */
   async updateCourse(course, email, password) {
-    const response = await this.api('/courses', 'POST', course, true, {
-      email,
-      password,
-    });
-    if (response.status === 201) {
+    const response = await this.api(
+      `/courses/${course.id}`,
+      'PUT',
+      course,
+      true,
+      {
+        email,
+        password,
+      }
+    );
+    if (response.status === 204) {
       return [];
     }
     if (response.status === 400) {
@@ -160,9 +168,9 @@ export default class Data {
    * @param {string} email - user email
    * @param {string} password - users decoded password
    *
-   * @returnss {object} response - a resolved promise from database
+   * @returns {object} response - a resolved promise from database
    * @ OR
-   * @returnss {null}
+   * @returns {null}
    */
   async getUser(email, password) {
     const response = await this.api(`/users`, 'GET', null, true, {

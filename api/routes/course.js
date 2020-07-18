@@ -112,6 +112,8 @@ router.put(
         if (course.userId === currentUser) {
           course.title = req.body.title;
           course.description = req.body.description;
+          course.estimatedTime = req.body.estimatedTime;
+          course.materialsNeeded = req.body.materialsNeeded;
           await course.update(req.body);
           // everything A O.K. status
           // end method tells express server that route is completed

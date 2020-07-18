@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
+import Form from './Form';
 
 export default class UpdateCourse extends Component {
   state = {
-    courseDetails: '',
+    title: '',
+    description: '',
+    estimatedTime: '',
+    materialsNeeded: '',
+    user: '',
+    errors: [],
   };
 
   componentDidMount() {
@@ -13,102 +19,197 @@ export default class UpdateCourse extends Component {
 
     const { data } = context;
 
+    // Logic for forbidden routes
+
     data.getCourse(`/courses/${match.params.id}/`).then(courseData =>
       this.setState({
-        courseDetails: courseData.course,
+        title: courseData.course.title,
+        description: courseData.course.description,
+        estimatedTime: courseData.course.estimatedTime,
+        materialsNeeded: courseData.course.materialsNeeded,
+        user: courseData.course.user,
       })
     );
   }
 
-  render() {
-    const { courseDetails } = this.state;
+  componentDidUpdate() {
+    const { context, history } = this.props;
+    const { user } = this.state;
 
-    const { user } = courseDetails;
-    const { match, context, history } = this.props;
+    const { authenticatedUser } = context;
 
-    const courseDetailsPage = `/courses/${match.params.id}`;
-
-    // Logic for forbidden routes
     if (user) {
-      if (context.authenticatedUser.emailAddress !== user.emailAddress) {
+      if (authenticatedUser.emailAddress !== user.emailAddress) {
         history.push('/');
       } else {
         console.log('matching');
       }
     }
+  }
+
+  // Updates values stored in state with information entered into form inputs
+  change = event => {
+    const { name } = event.target;
+    const { value } = event.target;
+
+    this.setState(() => ({
+      [name]: value,
+    }));
+  };
+
+  submit = () => {
+    const { title, description, estimatedTime, materialsNeeded } = this.state;
+
+    const { context, history, match } = this.props;
+
+    const { data, authenticatedUser } = context;
+
+    // decode password
+    const decodedPassword = atob(authenticatedUser.password);
+
+    const { id } = match.params;
+    const userId = authenticatedUser.id;
+    const email = authenticatedUser.emailAddress;
+    const password = decodedPassword;
+
+    // New user payload
+    const course = {
+      id,
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+      userId,
+    };
+
+    /**
+     * CreateCourse method sends PUT request to API using input course data and userAuth
+     *
+     * @param {object} Course - Contains all course information to be submitted to API
+     * @param {string} email - user email
+     * @param {string} password - users decoded password
+     *
+     */
+
+    data
+      .updateCourse(course, email, password)
+      .then(errors => {
+        if (errors.length) {
+          this.setState({ errors });
+        } else {
+          const courseDetailsPage = `/courses/${match.params.id}`;
+          history.push(courseDetailsPage);
+        }
+      })
+      .catch(err => {
+        // handle rejected promises
+
+        console.log(err);
+        history.push('/error'); // push to history stack
+      });
+  };
+
+  cancel = () => {
+    const { history, match, location } = this.props;
+    const courseDetailsPage = `/courses/${match.params.id}`;
+    const { from } = location.state || { from: { pathname: '/' } };
+
+    console.log(from);
+    history.push(from);
+  };
+
+  render() {
+    const {
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+      errors,
+    } = this.state;
+
+    const { context } = this.props;
+
+    const { authenticatedUser } = context;
 
     return (
       <div className="bounds course--detail">
         <h1>Update Course</h1>
         <div>
-          <form>
-            <div className="grid-66">
-              <div className="course--header">
-                <h4 className="course--label">Course</h4>
-                <div>
-                  <input
-                    id="title"
-                    name="title"
-                    type="text"
-                    className="input-title course--title--input"
-                    placeholder="Course title..."
-                    value={courseDetails.title}
-                  />
-                </div>
-                <p>By: {user ? `${user.firstName} ${user.lastName}` : ''}</p>
-              </div>
-              <div className="course--description">
-                <div>
-                  <textarea
-                    id="description"
-                    name="description"
-                    className=""
-                    placeholder="Course description..."
-                    value={courseDetails.description}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="grid-25 grid-right">
-              <div className="course--stats">
-                <ul className="course--stats--list">
-                  <li className="course--stats--list--item">
-                    <h4>Estimated Time</h4>
+          <Form
+            cancel={this.cancel}
+            errors={errors}
+            submit={this.submit}
+            submitButtonText="Update Course"
+            elements={() => (
+              <React.Fragment>
+                <div className="grid-66">
+                  <div className="course--header">
+                    <h4 className="course--label">Course</h4>
                     <div>
                       <input
-                        id="estimatedTime"
-                        name="estimatedTime"
+                        id="title"
+                        name="title"
                         type="text"
-                        className="course--time--input"
-                        placeholder="Hours"
-                        value={courseDetails.estimatedTime}
+                        className="input-title course--title--input"
+                        placeholder="Course title..."
+                        value={title}
+                        onChange={this.change}
                       />
                     </div>
-                  </li>
-                  <li className="course--stats--list--item">
-                    <h4>Materials Needed</h4>
+                    <p>
+                      By: {authenticatedUser.firstName}{' '}
+                      {authenticatedUser.lastName}{' '}
+                    </p>
+                  </div>
+                  <div className="course--description">
                     <div>
                       <textarea
-                        id="materialsNeeded"
-                        name="materialsNeeded"
+                        id="description"
+                        name="description"
                         className=""
-                        placeholder="List materials..."
-                        value={courseDetails.materialsNeeded}
+                        placeholder="Course description..."
+                        onChange={this.change}
+                        value={description}
                       />
                     </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="grid-100 pad-bottom">
-              <button className="button" type="submit">
-                Update Course
-              </button>
-              <Link className="button button-secondary" to={courseDetailsPage}>
-                Cancel
-              </Link>
-            </div>
-          </form>
+                  </div>
+                </div>
+                <div className="grid-25 grid-right">
+                  <div className="course--stats">
+                    <ul className="course--stats--list">
+                      <li className="course--stats--list--item">
+                        <h4>Estimated Time</h4>
+                        <div>
+                          <input
+                            id="estimatedTime"
+                            name="estimatedTime"
+                            type="text"
+                            className="course--time--input"
+                            placeholder="Hours"
+                            onChange={this.change}
+                            value={estimatedTime}
+                          />
+                        </div>
+                      </li>
+                      <li className="course--stats--list--item">
+                        <h4>Materials Needed</h4>
+                        <div>
+                          <textarea
+                            id="materialsNeeded"
+                            name="materialsNeeded"
+                            className=""
+                            placeholder="List materials..."
+                            onChange={this.change}
+                            value={materialsNeeded}
+                          />
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </React.Fragment>
+            )}
+          />
         </div>
       </div>
     );
