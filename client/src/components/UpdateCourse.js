@@ -110,12 +110,9 @@ export default class UpdateCourse extends Component {
   };
 
   cancel = () => {
-    const { history, match, location } = this.props;
+    const { history, match } = this.props;
     const courseDetailsPage = `/courses/${match.params.id}`;
-    const { from } = location.state || { from: { pathname: '/' } };
-
-    console.log(from);
-    history.push(from);
+    history.push(courseDetailsPage);
   };
 
   render() {
