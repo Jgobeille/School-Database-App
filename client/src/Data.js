@@ -163,6 +163,28 @@ export default class Data {
   }
 
   /**
+   * Deletes selected course
+   *
+   * @param {number} id - course id number
+   * @param {string} email - user email
+   * @param {string} password - user password
+   */
+  async deleteCourse(id, email, password) {
+    const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {
+      email,
+      password,
+    });
+    if (response.status === 204) {
+      return [];
+    }
+    if (response.status === 400) {
+      return response.json().then(data => data.errors);
+    }
+
+    throw new Error();
+  }
+
+  /**
    * Sends GET request to API to get specific user with their email and password
    *
    * @param {string} email - user email

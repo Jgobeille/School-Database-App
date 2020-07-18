@@ -34,7 +34,8 @@ export default class CourseDetails extends Component {
     let materials;
 
     if (courseDetails.materialsNeeded) {
-      materials = courseDetails.materialsNeeded.split('*');
+      console.log(courseDetails.materialsNeeded);
+      materials = courseDetails.materialsNeeded.split('\n');
     }
 
     // eslint-disable-next-line react/destructuring-assignment
