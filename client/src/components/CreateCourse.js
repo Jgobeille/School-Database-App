@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Form from './Form.js';
 
+/**
+ * Creates course for authenticated user
+ */
 export default class CreateCourse extends Component {
   state = {
     title: '',
@@ -13,6 +15,7 @@ export default class CreateCourse extends Component {
     errors: [],
   };
 
+  // Updates values stored in state with information entered into form inputs
   change = event => {
     const { name } = event.target;
     const { value } = event.target;
@@ -27,13 +30,14 @@ export default class CreateCourse extends Component {
 
     const { context, history } = this.props;
 
-    const { data } = context;
+    const { data, authenticatedUser } = context;
 
-    const encodedPassword = atob(context.authenticatedUser.password);
+    // decode password
+    const decodedPassword = atob(authenticatedUser.password);
 
-    const userId = context.authenticatedUser.id;
-    const email = context.authenticatedUser.emailAddress;
-    const password = encodedPassword;
+    const userId = authenticatedUser.id;
+    const email = authenticatedUser.emailAddress;
+    const password = decodedPassword;
 
     // New user payload
     const course = {
@@ -43,6 +47,15 @@ export default class CreateCourse extends Component {
       materialsNeeded,
       userId,
     };
+
+    /**
+     * CreateCourse method sends request to API using input course data and userAuth
+     *
+     * @param {object} Course - Contains all course information to be submitted to API
+     * @param {string} email - user email
+     * @param {string} password - users decoded password
+     *
+     */
 
     data
       .createCourse(course, email, password)
@@ -76,6 +89,7 @@ export default class CreateCourse extends Component {
     } = this.state;
 
     const { context } = this.props;
+    const { authenticatedUser } = context;
 
     return (
       <div className="bounds course--detail">
@@ -104,8 +118,8 @@ export default class CreateCourse extends Component {
                     </div>
 
                     <p>
-                      By: {context.authenticatedUser.firstName}{' '}
-                      {context.authenticatedUser.lastName}{' '}
+                      By: {authenticatedUser.firstName}{' '}
+                      {authenticatedUser.lastName}{' '}
                     </p>
                   </div>
                   <div className="course--description">
