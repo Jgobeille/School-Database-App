@@ -115,6 +115,8 @@ export default class CreateCourse extends Component {
                         name="description"
                         className=""
                         placeholder="Course description..."
+                        onChange={this.change}
+                        value={description}
                       />
                     </div>
                   </div>
@@ -145,7 +147,7 @@ export default class CreateCourse extends Component {
                             className=""
                             placeholder="List materials..."
                             onChange={this.change}
-                            value={estimatedTime}
+                            value={materialsNeeded}
                           />
                         </div>
                       </li>
