@@ -11,7 +11,7 @@ export default class Data {
    * @param {string} method
    * @param {object} body
    *
-   *@returns {function} fetch api to make a promise based request
+   * @returns {function} fetch api to make a promise based request
    */
 
   // eslint-disable-next-line class-methods-use-this
@@ -64,6 +64,11 @@ export default class Data {
     return fetch(url, options);
   }
 
+  /**
+   * Gathers all of the courses stored in database
+   *
+   * @returns {object} response - a resolved promise from database that is then parsed into JSON
+   */
   async getCourses() {
     const response = await this.api(`/courses`, 'GET', null);
     if (response.status === 200) {
@@ -76,6 +81,13 @@ export default class Data {
     throw new Error();
   }
 
+  /**
+   * Makes request to API to get specific course data
+   *
+   * @param {string} url - url of requested course
+   *
+   * @returns {object} response - a resolved promise from database
+   */
   async getCourse(url) {
     const response = await this.api(url, 'GET', null);
     if (response.status === 200) {
@@ -88,6 +100,18 @@ export default class Data {
     throw new Error();
   }
 
+  /**
+   * Sends request to API to create course using input course data and userAuth
+   *
+   * @param {object} Course - Contains all course information to be submitted to API
+   * @param {string} email - user email
+   * @param {string} password - users decoded password
+   *
+   * @returns {array} - Empty array of data containing no errors
+   * @ OR
+   * @returns {object} response - resolved promise containing a collection of errors
+   *
+   */
   async createCourse(course, email, password) {
     const response = await this.api('/courses', 'POST', course, true, {
       email,
@@ -103,6 +127,43 @@ export default class Data {
     throw new Error();
   }
 
+  /**
+   * Sends request to API to update course information using input course data and userAuth
+   *
+   * @param {object} Course - Contains all course information to be submitted to API
+   * @param {string} email - user email
+   * @param {string} password - users decoded password
+   *
+   * @returns {array} [] - Empty array of data containing no errors
+   * @ OR
+   * @returns {object} response - resolved promise containing a collection of errors
+   *
+   */
+  async updateCourse(course, email, password) {
+    const response = await this.api('/courses', 'POST', course, true, {
+      email,
+      password,
+    });
+    if (response.status === 201) {
+      return [];
+    }
+    if (response.status === 400) {
+      return response.json().then(data => data.errors);
+    }
+
+    throw new Error();
+  }
+
+  /**
+   * Sends GET request to API to get specific user with their email and password
+   *
+   * @param {string} email - user email
+   * @param {string} password - users decoded password
+   *
+   * @returnss {object} response - a resolved promise from database
+   * @ OR
+   * @returnss {null}
+   */
   async getUser(email, password) {
     const response = await this.api(`/users`, 'GET', null, true, {
       email,
