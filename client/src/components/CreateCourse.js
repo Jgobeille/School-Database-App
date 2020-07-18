@@ -27,7 +27,13 @@ export default class CreateCourse extends Component {
 
     const { context, history } = this.props;
 
-    const { actions, data } = context;
+    const { data } = context;
+
+    const encodedPassword = atob(context.authenticatedUser.password);
+
+    const userId = context.authenticatedUser.id;
+    const email = context.authenticatedUser.emailAddress;
+    const password = encodedPassword;
 
     // New user payload
     const course = {
@@ -35,7 +41,24 @@ export default class CreateCourse extends Component {
       description,
       estimatedTime,
       materialsNeeded,
+      userId,
     };
+
+    data
+      .createCourse(course, email, password)
+      .then(errors => {
+        if (errors.length) {
+          this.setState({ errors });
+        } else {
+          history.push('/');
+        }
+      })
+      .catch(err => {
+        // handle rejected promises
+
+        console.log(err);
+        history.push('/error'); // push to history stack
+      });
   };
 
   cancel = () => {
@@ -53,7 +76,6 @@ export default class CreateCourse extends Component {
     } = this.state;
 
     const { context } = this.props;
-    console.log(context);
 
     return (
       <div className="bounds course--detail">
@@ -76,7 +98,8 @@ export default class CreateCourse extends Component {
                         type="text"
                         className="input-title course--title--input"
                         placeholder="Course title..."
-                        value=""
+                        value={title}
+                        onChange={this.change}
                       />
                     </div>
 
@@ -108,7 +131,8 @@ export default class CreateCourse extends Component {
                             type="text"
                             className="course--time--input"
                             placeholder="Hours"
-                            value=""
+                            onChange={this.change}
+                            value={estimatedTime}
                           />
                         </div>
                       </li>
@@ -120,6 +144,8 @@ export default class CreateCourse extends Component {
                             name="materialsNeeded"
                             className=""
                             placeholder="List materials..."
+                            onChange={this.change}
+                            value={estimatedTime}
                           />
                         </div>
                       </li>

@@ -19,7 +19,7 @@ const router = express.Router();
 // Send GET request to /users to return currently authenticatedUser
 router.get('/users', authenticateUser, (req, res) => {
   const user = req.currentUser;
-
+  
   res.json({
     id: user.id,
     firstName: user.firstName,

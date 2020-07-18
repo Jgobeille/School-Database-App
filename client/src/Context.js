@@ -28,6 +28,13 @@ export class Provider extends Component {
 
   signIn = async (email, password) => {
     const user = await this.data.getUser(email, password);
+
+    // encrypt password
+    const encodedPassword = btoa(password);
+
+    // add password to user info saved in state
+    user.password = encodedPassword;
+
     if (user !== null) {
       this.setState(() => ({
         authenticatedUser: user,
@@ -48,12 +55,13 @@ export class Provider extends Component {
   };
 
   render() {
-    const { authenticatedUser } = this.state;
+    const { authenticatedUser, userPassword } = this.state;
     /**
      * value object provides the utility methods of the class Data.
      */
     const value = {
       authenticatedUser,
+      userPassword,
       data: this.data,
       /*
       Provider's value prop an actions object to store any event handlers
