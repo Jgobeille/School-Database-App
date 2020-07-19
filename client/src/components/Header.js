@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /**
  * Renders the header of the app
@@ -48,3 +48,7 @@ export default class Header extends PureComponent {
     );
   }
 }
+
+Header.propTypes = {
+  context: PropTypes.object,
+};

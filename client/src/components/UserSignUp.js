@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Form from './Form.js';
 
 /**
@@ -140,3 +141,8 @@ export default class UserSignUp extends Component {
     );
   }
 }
+
+UserSignUp.propTypes = {
+  context: PropTypes.object,
+  history: PropTypes.object,
+};

@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Course from './Course.js';
 /**
  * Renders each specific course
  */
 
-// eslint-disable-next-line react/prop-types
 const CourseContainer = ({ courses }) => (
   <React.Fragment>
     {courses ? (
@@ -20,5 +20,9 @@ const CourseContainer = ({ courses }) => (
     )}
   </React.Fragment>
 );
+
+CourseContainer.propTypes = {
+  courses: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+};
 
 export default CourseContainer;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import CourseContainer from './CourseContainer.js';
 
@@ -13,7 +14,6 @@ export default class Courses extends Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line react/prop-types
     const { context, history } = this.props;
     context.data
       .getCourses()
@@ -31,7 +31,6 @@ export default class Courses extends Component {
   }
 
   render() {
-    // eslint-disable-next-line react/destructuring-assignment
     const { courses } = this.state;
     return (
       <div className="bounds">
@@ -60,3 +59,8 @@ export default class Courses extends Component {
     );
   }
 }
+
+Courses.propTypes = {
+  context: PropTypes.object,
+  history: PropTypes.object,
+};

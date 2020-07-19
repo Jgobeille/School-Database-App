@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const UserSignOut = ({ context }) => {
   const { actions } = context;
@@ -23,6 +23,10 @@ const UserSignOut = ({ context }) => {
   });
 
   return <Redirect to="/" />;
+};
+
+UserSignOut.propTypes = {
+  context: PropTypes.object,
 };
 
 export default UserSignOut;

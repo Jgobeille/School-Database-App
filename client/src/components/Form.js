@@ -1,6 +1,6 @@
-/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * The file components/Form.js exports a function that renders any validation errors sent from the API,
@@ -32,7 +32,11 @@ const Form = ({ cancel, errors, submit, submitButtonText, elements }) => {
           <button className="button" type="submit">
             {submitButtonText}
           </button>
-          <button className="button button-secondary" onClick={handleCancel}>
+          <button
+            className="button button-secondary"
+            type="submit"
+            onClick={handleCancel}
+          >
             Cancel
           </button>
         </div>
@@ -61,5 +65,13 @@ function ErrorsDisplay({ errors }) {
 
   return errorsDisplay;
 }
+
+Form.propTypes = {
+  cancel: PropTypes.func,
+  errors: PropTypes.array,
+  submit: PropTypes.func,
+  submitButtonText: PropTypes.string,
+  elements: PropTypes.func,
+};
 
 export default Form;

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Form from './Form';
 
@@ -14,7 +14,6 @@ export default class UpdateCourse extends Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line react/prop-types
     const { context, match } = this.props;
 
     const { data } = context;
@@ -211,3 +210,9 @@ export default class UpdateCourse extends Component {
     );
   }
 }
+
+UpdateCourse.propTypes = {
+  context: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
+};

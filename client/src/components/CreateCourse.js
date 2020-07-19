@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Form from './Form.js';
 
@@ -176,3 +176,8 @@ export default class CreateCourse extends Component {
     );
   }
 }
+
+CreateCourse.propTypes = {
+  context: PropTypes.object,
+  history: PropTypes.object,
+};

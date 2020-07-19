@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown';
@@ -140,3 +140,9 @@ export default class CourseDetails extends Component {
     );
   }
 }
+
+CourseDetails.propTypes = {
+  context: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
+};
