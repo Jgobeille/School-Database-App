@@ -240,13 +240,13 @@ body {
 }
 /* line 34, ../sass/global.sass */
 .header nav {
-  float: right;
   margin-top: 3px;
 }
 /* line 37, ../sass/global.sass */
 .header nav a {
   color: rgba(255, 255, 255, 0.5);
   margin-left: 20px;
+  margin-right: 20px;
 }
 /* line 40, ../sass/global.sass */
 .header nav a:hover {
@@ -751,3 +751,37 @@ input:focus {
 .course--description textarea {
   margin-bottom: 20px;
 }
+
+
+/* Custom changes */
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+
+/* Media Queries */
+/* Portrait and Landscape */
+
+@media only screen and (max-width: 600px) {
+
+  .header-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .header nav, .header nav a, .header nav span {
+    margin-right: 20px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+
+
+}
+

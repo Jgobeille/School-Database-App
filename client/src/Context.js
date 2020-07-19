@@ -29,9 +29,8 @@ export class Provider extends Component {
   signIn = async (email, password) => {
     const user = await this.data.getUser(email, password);
 
-    console.log(password);
     // add password to user info saved in state
-    if (password && user) {
+    if (user) {
       // encrypt password
       const encodedPassword = btoa(password);
 

@@ -20,7 +20,7 @@ export default class Header extends PureComponent {
 
     return (
       <div className="header">
-        <div className="bounds">
+        <div className="header-container">
           <h1 className="header--logo">
             <Link to="/">Little Home School</Link>
           </h1>
