@@ -26,7 +26,7 @@ export default class Courses extends Component {
         // handle rejected promises
 
         console.log(err);
-        history.push('/error'); // push to history stack
+        history.push('/errors'); // push to history stack
       });
   }
 

@@ -19,8 +19,6 @@ export default class UpdateCourse extends Component {
 
     const { data } = context;
 
-    // Logic for forbidden routes
-
     data.getCourse(`/courses/${match.params.id}/`).then(courseData =>
       this.setState({
         title: courseData.course.title,
@@ -38,9 +36,10 @@ export default class UpdateCourse extends Component {
 
     const { authenticatedUser } = context;
 
+    // Logic for forbidden routes
     if (user) {
       if (authenticatedUser.emailAddress !== user.emailAddress) {
-        history.push('/');
+        history.push('/forbidden');
       } else {
         console.log('matching');
       }
@@ -105,7 +104,7 @@ export default class UpdateCourse extends Component {
         // handle rejected promises
 
         console.log(err);
-        history.push('/error'); // push to history stack
+        history.push('/errors'); // push to history stack
       });
   };
 
