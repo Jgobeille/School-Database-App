@@ -31,10 +31,10 @@ export class Provider extends Component {
 
     console.log(password);
     // add password to user info saved in state
-    if (password) {
-      console.log('true');
+    if (password && user) {
       // encrypt password
       const encodedPassword = btoa(password);
+
       user.password = encodedPassword;
     }
 
