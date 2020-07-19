@@ -14,12 +14,20 @@ export default class Courses extends Component {
 
   componentDidMount() {
     // eslint-disable-next-line react/prop-types
-    const { context } = this.props;
-    context.data.getCourses().then(courseData =>
-      this.setState({
-        courses: courseData.courses,
-      })
-    );
+    const { context, history } = this.props;
+    context.data
+      .getCourses()
+      .then(courseData =>
+        this.setState({
+          courses: courseData.courses,
+        })
+      )
+      .catch(err => {
+        // handle rejected promises
+
+        console.log(err);
+        history.push('/error'); // push to history stack
+      });
   }
 
   render() {

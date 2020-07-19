@@ -95,7 +95,7 @@ export default class Data {
     if (response.status === 200) {
       return response.json().then(data => data);
     }
-    if (response.status === 401) {
+    if (response.status === 400) {
       return null;
     }
 
@@ -163,7 +163,7 @@ export default class Data {
   }
 
   /**
-   * Deletes selected course
+   * Sends request to API to delete course information. Requires course id and userAuth
    *
    * @param {number} id - course id number
    * @param {string} email - user email
@@ -205,7 +205,6 @@ export default class Data {
     if (response.status === 401) {
       return null;
     }
-
     throw new Error();
   }
 

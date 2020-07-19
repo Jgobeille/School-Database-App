@@ -1,5 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+import ReactMarkdown from 'react-markdown';
 
 /**
  * Renders the description and details of a course
@@ -11,32 +14,61 @@ export default class CourseDetails extends Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line react/prop-types
-    const { context } = this.props;
-    // eslint-disable-next-line react/prop-types
-    const { match } = this.props;
-    context.data.getCourse(match.url).then(courseData =>
-      this.setState({
-        courseDetails: courseData.course,
+    const { context, match, history } = this.props;
+    const { data } = context;
+    data
+      .getCourse(match.url)
+      .then(courseData => {
+        if (courseData) {
+          this.setState({
+            courseDetails: courseData.course,
+          });
+        } else {
+          throw new Error();
+        }
       })
-    );
+      .catch(err => {
+        // handle rejected promises
+
+        console.log(err);
+        history.push('/notFound'); // push to history stack
+      });
   }
+
+  deleteCourse = () => {
+    const { context, match, history } = this.props;
+    const { data, authenticatedUser } = context;
+
+    // decode password
+    const decodedPassword = atob(authenticatedUser.password);
+
+    const { id } = match.params;
+    const email = authenticatedUser.emailAddress;
+    const password = decodedPassword;
+
+    data
+      .deleteCourse(id, email, password)
+      .then(() => {
+        history.push('/');
+      })
+      .catch(err => {
+        // handle rejected promises
+
+        console.log(err);
+        history.push('/error'); // push to history stack
+      });
+  };
 
   render() {
     const { courseDetails } = this.state;
     // eslint-disable-next-line react/prop-types
     const { match, context } = this.props;
 
-    const updateURL = `${match.url}/update`;
+    const { authenticatedUser } = context;
 
     const { user } = courseDetails;
 
-    let materials;
-
-    if (courseDetails.materialsNeeded) {
-      console.log(courseDetails.materialsNeeded);
-      materials = courseDetails.materialsNeeded.split('\n');
-    }
+    const updateURL = `${match.url}/update`;
 
     // eslint-disable-next-line react/destructuring-assignment
     // eslint-disable-next-line react/prop-types;
@@ -47,15 +79,19 @@ export default class CourseDetails extends Component {
             <div className="actions--bar">
               <div className="bounds">
                 <div className="grid-100">
-                  {context.authenticatedUser &&
-                  context.authenticatedUser.id === courseDetails.userId ? (
+                  {authenticatedUser &&
+                  authenticatedUser.id === courseDetails.userId ? (
                     <span>
                       <Link className="button" to={updateURL}>
                         Update Course
                       </Link>
-                      <Link className="button" to="/">
+                      <button
+                        className="button"
+                        type="submit"
+                        onClick={this.deleteCourse}
+                      >
                         Delete Course
-                      </Link>
+                      </button>
                       <Link className="button button-secondary" to="/">
                         Return to List
                       </Link>
@@ -76,7 +112,7 @@ export default class CourseDetails extends Component {
                   <p>By: {user ? `${user.firstName} ${user.lastName}` : ''}</p>
                 </div>
                 <div className="course--description">
-                  <p>{courseDetails.description}</p>
+                  <ReactMarkdown>{courseDetails.description}</ReactMarkdown>
                 </div>
               </div>
               <div className="grid-25 grid-right">
@@ -88,15 +124,9 @@ export default class CourseDetails extends Component {
                     </li>
                     <li className="course--stats--list--item">
                       <h4>Materials Needed</h4>
-                      <ul>
-                        {materials
-                          ? materials
-                              .slice(1)
-                              .map((material, id) => (
-                                <li key={id}>{material}</li>
-                              ))
-                          : ''}
-                      </ul>
+                      <ReactMarkdown>
+                        {courseDetails.materialsNeeded}
+                      </ReactMarkdown>
                     </li>
                   </ul>
                 </div>
