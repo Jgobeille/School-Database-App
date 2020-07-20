@@ -22,6 +22,12 @@ export default class Header extends PureComponent {
       <div className="header">
         <div className="header-container">
           <h1 className="header--logo">
+            <img
+              className="diamond-logo"
+              alt="pink diamond logo"
+              src="./images/diamond.png"
+              href="/"
+            />
             <Link to="/">Little Home School</Link>
           </h1>
           <nav>

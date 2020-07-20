@@ -217,7 +217,8 @@ body {
   font-size: 24px;
   padding: 0 15px;
   margin: 0;
-  display: inline-block;
+  display: flex;
+  align-items: flex-end;
 }
 /* line 23, ../sass/global.sass */
 .header--logo a {
@@ -240,7 +241,8 @@ body {
 }
 /* line 34, ../sass/global.sass */
 .header nav {
-  margin-top: 3px;
+  display: flex;
+  flex-direction: row;
 }
 /* line 37, ../sass/global.sass */
 .header nav a {
@@ -305,8 +307,7 @@ p {
 }
 
 /* line 74, ../sass/global.sass */
-.grid, .grid-25, .grid-33, .grid-66, .grid-100 {
-  float: left;
+.grid, .grid-25, .grid-50, .grid-33, .grid-66, .grid-100 {
   padding: 0 15px;
   box-sizing: border-box;
 }
@@ -755,14 +756,33 @@ input:focus {
 
 /* Custom changes */
 
+.container {
+  display: flex;
+  max-width: 1250px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 auto;
+  
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   flex-wrap: wrap;
   max-width: 1250px;
   margin: 0 auto;
 }
 
+.diamond-logo {
+  height: 50px;
+  width: 50px;
+  margin: 0 10px 0 0;
+}
+
+.course-item{
+  width: 33.3%;
+}
 
 /* Media Queries */
 /* Portrait and Landscape */
@@ -772,16 +792,52 @@ input:focus {
   .header-container {
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header--logo {
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
   }
 
   .header nav, .header nav a, .header nav span {
-    margin-right: 20px;
-    margin-left: 0;
     margin-bottom: 10px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .signin, .signup {
+    margin-top: 10px;
   }
 
+.diamond-logo{
+  align-self: center;
+  margin: 0 0 10px 0;
+}
+
+.course-item {
+  width: 50%
+}
 
 
+
+
+}
+
+@media only screen and (max-width: 500px) {
+  .course-item {
+    width: 100%;
+    margin: 0 auto;
+    
+  }
+
+  .course--label, .course--title {
+    text-align: center;
+  }
+
+  
 }
 

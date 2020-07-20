@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
  */
 
 const Course = ({ title, url }) => (
-  <div className="grid-33">
+  <div className="grid course-item">
     <Link className="course--module course--link" to={url}>
       <h4 className="course--label">Course</h4>
       <h3 className="course--title">{title}</h3>

@@ -33,9 +33,9 @@ export default class Courses extends Component {
   render() {
     const { courses } = this.state;
     return (
-      <div className="bounds">
+      <div className="container">
         <CourseContainer courses={courses} />
-        <div className="grid-33">
+        <div className=" grid course-item">
           <Link
             className="course--module course--add--module"
             to="/courses/create"
