@@ -784,6 +784,18 @@ input:focus {
   width: 33.3%;
 }
 
+/* Sign-in and form page */
+
+.centered-signin {
+  margin: 0 auto;
+  width: 33.3%
+}
+
+.submit-button {
+  margin:0 10px 10px 0;
+
+}
+
 /* Media Queries */
 /* Portrait and Landscape */
 
@@ -823,6 +835,22 @@ input:focus {
 }
 
 
+/* Sign-in page */
+.centered-signin {
+  margin: 0 auto;
+  width: 100%
+}
+
+.centered-signin h1 {
+  text-align: center;
+}
+
+.submit-cancel-buttons {
+  display: grid;
+  justify-content: center;
+}
+
+
 
 
 }
@@ -837,6 +865,7 @@ input:focus {
   .course--label, .course--title {
     text-align: center;
   }
+
 
   
 }

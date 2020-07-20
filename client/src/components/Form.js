@@ -28,8 +28,8 @@ const Form = ({ cancel, errors, submit, submitButtonText, elements }) => {
       <ErrorsDisplay errors={errors} />
       <form onSubmit={handleSubmit}>
         {elements()}
-        <div className="grid-100 pad-bottom">
-          <button className="button" type="submit">
+        <div className="grid pad-bottom submit-cancel-buttons">
+          <button className="submit-button button" type="submit">
             {submitButtonText}
           </button>
           <button
