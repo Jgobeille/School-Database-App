@@ -801,6 +801,7 @@ input:focus {
 .loader {
   display: flex;
   margin: 0 auto;
+  justify-content: center;
   align-items: center;
   min-height: 50vh;
 }
