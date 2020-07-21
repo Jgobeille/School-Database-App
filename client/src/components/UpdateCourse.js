@@ -39,8 +39,6 @@ export default class UpdateCourse extends Component {
     if (user) {
       if (authenticatedUser.emailAddress !== user.emailAddress) {
         history.push('/forbidden');
-      } else {
-        console.log('matching');
       }
     }
   }
@@ -103,7 +101,7 @@ export default class UpdateCourse extends Component {
         // handle rejected promises
 
         console.log(err);
-        history.push('/errors'); // push to history stack
+        history.push('/error'); // push to history stack
       });
   };
 

@@ -40,7 +40,7 @@ export default class UserSignIn extends Component {
       })
       .catch(err => {
         console.log(err);
-        history.push('/errors');
+        history.push('/error');
       });
   };
 

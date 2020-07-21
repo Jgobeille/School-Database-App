@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown';
 
+import Loader from './Loader.js';
+
 /**
  * Renders the description and details of a course
  */
@@ -132,7 +134,7 @@ export default class CourseDetails extends Component {
             </div>
           </React.Fragment>
         ) : (
-          <div>Waiting...</div>
+          <Loader />
         )}
       </div>
     );
