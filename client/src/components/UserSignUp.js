@@ -79,7 +79,7 @@ export default class UserSignUp extends Component {
 
     return (
       <div className="bounds">
-        <div className="grid-33 centered signin">
+        <div className="grid centered-signin signin">
           <h1>Sign Up</h1>
           <Form
             cancel={this.cancel}
@@ -132,7 +132,7 @@ export default class UserSignUp extends Component {
             )}
           />
 
-          <p>
+          <p className="signin-signup">
             Already have a user account? <Link to="/signin">Click here</Link> to
             sign in!
           </p>
