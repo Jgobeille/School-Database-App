@@ -78,10 +78,10 @@ export default class CourseDetails extends Component {
           <React.Fragment>
             <div className="actions--bar">
               <div className="bounds">
-                <div className="grid-100">
+                <div className="grid">
                   {authenticatedUser &&
                   authenticatedUser.id === courseDetails.userId ? (
-                    <span>
+                    <span className="actions--bar--buttons">
                       <Link className="button" to={updateURL}>
                         Update Course
                       </Link>
