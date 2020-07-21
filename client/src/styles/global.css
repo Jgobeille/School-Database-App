@@ -421,6 +421,9 @@ p {
 /* line 159, ../sass/global.sass */
 .course--detail {
   margin-top: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 /* line 162, ../sass/global.sass */
 .course--header {
@@ -928,6 +931,11 @@ input:focus {
   margin-bottom: 10px;
 
 }
+.actions--bar--only-button {
+  display: flex;
+  justify-content: center;
+
+}
 
 
 
@@ -950,6 +958,10 @@ input:focus {
     text-align: center;
     margin-bottom: 10px;
   
+  }
+
+  .course--detail {
+    flex-flow: column wrap;
   }
 
 

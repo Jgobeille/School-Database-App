@@ -97,15 +97,17 @@ export default class CourseDetails extends Component {
                       </Link>
                     </span>
                   ) : (
-                    <Link className="button button-secondary" to="/">
-                      Return to List
-                    </Link>
+                    <span className="actions--bar--only-button">
+                      <Link className="button button-secondary" to="/">
+                        Return to List
+                      </Link>
+                    </span>
                   )}
                 </div>
               </div>
             </div>
             <div className="bounds course--detail">
-              <div className="grid-66">
+              <div className="grid">
                 <div className="course--header">
                   <h4 className="course--label">Course</h4>
                   <h3 className="course--title">{courseDetails.title}</h3>
@@ -115,7 +117,7 @@ export default class CourseDetails extends Component {
                   <ReactMarkdown>{courseDetails.description}</ReactMarkdown>
                 </div>
               </div>
-              <div className="grid-25 grid-right">
+              <div className="grid">
                 <div className="course--stats">
                   <ul className="course--stats--list">
                     <li className="course--stats--list--item">
