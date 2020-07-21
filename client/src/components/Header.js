@@ -25,7 +25,7 @@ export default class Header extends PureComponent {
             <img
               className="diamond-logo"
               alt="pink diamond logo"
-              src="../images/diamond.png"
+              src="../../images/diamond.png"
               href="/"
             />
             <Link to="/">Little Home School</Link>

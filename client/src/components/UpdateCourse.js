@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Form from './Form';
+import Loader from './Loader.js';
 
 export default class UpdateCourse extends Component {
   state = {
@@ -126,84 +127,90 @@ export default class UpdateCourse extends Component {
 
     return (
       <div className="bounds course--detail">
-        <h1>Update Course</h1>
-        <div>
-          <Form
-            cancel={this.cancel}
-            errors={errors}
-            submit={this.submit}
-            submitButtonText="Update Course"
-            elements={() => (
-              <React.Fragment>
-                <div className="grid-66">
-                  <div className="course--header">
-                    <h4 className="course--label">Course</h4>
-                    <div>
-                      <input
-                        id="title"
-                        name="title"
-                        type="text"
-                        className="input-title course--title--input"
-                        placeholder="Course title..."
-                        value={title}
-                        onChange={this.change}
-                      />
-                    </div>
-                    <p>
-                      By: {authenticatedUser.firstName}{' '}
-                      {authenticatedUser.lastName}{' '}
-                    </p>
-                  </div>
-                  <div className="course--description">
-                    <div>
-                      <textarea
-                        id="description"
-                        name="description"
-                        className=""
-                        placeholder="Course description..."
-                        onChange={this.change}
-                        value={description}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid-25 grid-right">
-                  <div className="course--stats">
-                    <ul className="course--stats--list">
-                      <li className="course--stats--list--item">
-                        <h4>Estimated Time</h4>
+        {title ? (
+          <React.Fragment>
+            <h1>Update Course</h1>
+            <div>
+              <Form
+                cancel={this.cancel}
+                errors={errors}
+                submit={this.submit}
+                submitButtonText="Update Course"
+                elements={() => (
+                  <React.Fragment>
+                    <div className="grid-66">
+                      <div className="course--header">
+                        <h4 className="course--label">Course</h4>
                         <div>
                           <input
-                            id="estimatedTime"
-                            name="estimatedTime"
+                            id="title"
+                            name="title"
                             type="text"
-                            className="course--time--input"
-                            placeholder="Hours"
+                            className="input-title course--title--input"
+                            placeholder="Course title..."
+                            value={title}
                             onChange={this.change}
-                            value={estimatedTime}
                           />
                         </div>
-                      </li>
-                      <li className="course--stats--list--item">
-                        <h4>Materials Needed</h4>
+                        <p>
+                          By: {authenticatedUser.firstName}{' '}
+                          {authenticatedUser.lastName}{' '}
+                        </p>
+                      </div>
+                      <div className="course--description">
                         <div>
                           <textarea
-                            id="materialsNeeded"
-                            name="materialsNeeded"
+                            id="description"
+                            name="description"
                             className=""
-                            placeholder="List materials..."
+                            placeholder="Course description..."
                             onChange={this.change}
-                            value={materialsNeeded}
+                            value={description}
                           />
                         </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </React.Fragment>
-            )}
-          />
-        </div>
+                      </div>
+                    </div>
+                    <div className="grid-25 grid-right">
+                      <div className="course--stats">
+                        <ul className="course--stats--list">
+                          <li className="course--stats--list--item">
+                            <h4>Estimated Time</h4>
+                            <div>
+                              <input
+                                id="estimatedTime"
+                                name="estimatedTime"
+                                type="text"
+                                className="course--time--input"
+                                placeholder="Hours"
+                                onChange={this.change}
+                                value={estimatedTime}
+                              />
+                            </div>
+                          </li>
+                          <li className="course--stats--list--item">
+                            <h4>Materials Needed</h4>
+                            <div>
+                              <textarea
+                                id="materialsNeeded"
+                                name="materialsNeeded"
+                                className=""
+                                placeholder="List materials..."
+                                onChange={this.change}
+                                value={materialsNeeded}
+                              />
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                )}
+              />
+            </div>
+          </React.Fragment>
+        ) : (
+          <Loader />
+        )}
       </div>
     );
   }
