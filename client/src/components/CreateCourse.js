@@ -92,8 +92,8 @@ export default class CreateCourse extends Component {
     const { authenticatedUser } = context;
 
     return (
-      <div className="bounds course--detail">
-        <h1>Create Course</h1>
+      <div className="bounds">
+        <h1 className="course--page--name">Create Course</h1>
         <div>
           <Form
             cancel={this.cancel}
@@ -101,8 +101,8 @@ export default class CreateCourse extends Component {
             submit={this.submit}
             submitButtonText="Create Course"
             elements={() => (
-              <React.Fragment>
-                <div className="grid-66">
+              <div className="course--form">
+                <div className="grid">
                   <div className="course--header">
                     <h4 className="course--label">Course</h4>
                     <div>
@@ -135,7 +135,7 @@ export default class CreateCourse extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="grid-25 grid-right">
+                <div className="grid">
                   <div className="course--stats">
                     <ul className="course--stats--list">
                       <li className="course--stats--list--item">
@@ -168,7 +168,7 @@ export default class CreateCourse extends Component {
                     </ul>
                   </div>
                 </div>
-              </React.Fragment>
+              </div>
             )}
           />
         </div>

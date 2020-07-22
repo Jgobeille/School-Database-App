@@ -809,7 +809,7 @@ input:focus {
 
 /* course Update Page */
 
-.update--course--form {
+.course--form {
   display: flex;
   flex-flow: row nowrap;
 
@@ -946,13 +946,13 @@ input:focus {
 }
 
 /* Course Update Page */
-.update--course--form {
+.course--form {
   display: flex;
   flex-flow: column;
   
 }
 
-.course--detail h1 {
+.course--page--name {
   text-align: center;
 
 }
@@ -969,7 +969,7 @@ input:focus {
     
   }
 
-  .course--label, .course--title {
+  .course--header {
     text-align: center;
   }
 

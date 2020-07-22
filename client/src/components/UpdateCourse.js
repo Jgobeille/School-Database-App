@@ -126,18 +126,18 @@ export default class UpdateCourse extends Component {
     const { authenticatedUser } = context;
 
     return (
-      <div className="bounds course--detail">
+      <div className="bounds ">
         {title ? (
           <React.Fragment>
             <div>
-              <h1>Update Course</h1>
+              <h1 className="course--page--name">Update Course</h1>
               <Form
                 cancel={this.cancel}
                 errors={errors}
                 submit={this.submit}
                 submitButtonText="Update Course"
                 elements={() => (
-                  <div className="update--course--form">
+                  <div className="course--form">
                     <div className="grid">
                       <div className="course--header">
                         <h4 className="course--label">Course</h4>
