@@ -807,6 +807,14 @@ input:focus {
   justify-content: center;
 }
 
+/* course Update Page */
+
+.update--course--form {
+  display: flex;
+  flex-flow: row nowrap;
+
+}
+
 /* Loader */
 
 .loader {
@@ -927,13 +935,25 @@ input:focus {
 
 
 /* Course Detail Page */
-.actions--bar--buttons button, a:nth-child(1) {
+.actions--bar--buttons button, a:nth-child(odd) {
   margin-bottom: 10px;
 
 }
 .actions--bar--only-button {
   display: flex;
   justify-content: center;
+
+}
+
+/* Course Update Page */
+.update--course--form {
+  display: flex;
+  flex-flow: column;
+  
+}
+
+.course--detail h1 {
+  text-align: center;
 
 }
 

@@ -129,16 +129,16 @@ export default class UpdateCourse extends Component {
       <div className="bounds course--detail">
         {title ? (
           <React.Fragment>
-            <h1>Update Course</h1>
             <div>
+              <h1>Update Course</h1>
               <Form
                 cancel={this.cancel}
                 errors={errors}
                 submit={this.submit}
                 submitButtonText="Update Course"
                 elements={() => (
-                  <React.Fragment>
-                    <div className="grid-66">
+                  <div className="update--course--form">
+                    <div className="grid">
                       <div className="course--header">
                         <h4 className="course--label">Course</h4>
                         <div>
@@ -170,7 +170,7 @@ export default class UpdateCourse extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="grid-25 grid-right">
+                    <div className="grid">
                       <div className="course--stats">
                         <ul className="course--stats--list">
                           <li className="course--stats--list--item">
@@ -203,7 +203,7 @@ export default class UpdateCourse extends Component {
                         </ul>
                       </div>
                     </div>
-                  </React.Fragment>
+                  </div>
                 )}
               />
             </div>
