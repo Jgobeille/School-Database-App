@@ -30,7 +30,7 @@ export default class CourseDetails extends Component {
             courseDetails: courseData.course,
           });
         } else {
-          history.push('/');
+          throw new Error();
         }
       })
       .catch(err => {

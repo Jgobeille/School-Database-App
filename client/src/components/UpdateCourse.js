@@ -15,19 +15,31 @@ export default class UpdateCourse extends Component {
   };
 
   componentDidMount() {
-    const { context, match } = this.props;
+    const { context, match, history } = this.props;
 
     const { data } = context;
 
-    data.getCourse(`/courses/${match.params.id}/`).then(courseData =>
-      this.setState({
-        title: courseData.course.title,
-        description: courseData.course.description,
-        estimatedTime: courseData.course.estimatedTime,
-        materialsNeeded: courseData.course.materialsNeeded,
-        user: courseData.course.user,
+    data
+      .getCourse(`/courses/${match.params.id}/`)
+      .then(courseData => {
+        if (courseData) {
+          this.setState({
+            title: courseData.course.title,
+            description: courseData.course.description,
+            estimatedTime: courseData.course.estimatedTime,
+            materialsNeeded: courseData.course.materialsNeeded,
+            user: courseData.course.user,
+          });
+        } else {
+          throw new Error();
+        }
       })
-    );
+      .catch(err => {
+        // handle rejected promises
+
+        console.log(err);
+        history.push('/notfound'); // push to history stack
+      });
   }
 
   componentDidUpdate() {

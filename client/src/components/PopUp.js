@@ -1,15 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
-export default class PopUp extends PureComponent {
+export default class PopUp extends Component {
   handleClick = () => {
     const { toggle } = this.props;
     toggle();
   };
 
   delete = e => {
+    /**
+     * For reasons I cannot explain, using preventDefault keeps the courseDetails page from rerendering and trying
+     * to make a GET request on a course that doesn't exist anymore after being deleted.
+     */
     e.preventDefault();
     const { deleteCourse } = this.props;
     deleteCourse();
