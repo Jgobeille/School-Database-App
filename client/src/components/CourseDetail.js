@@ -1,9 +1,11 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown';
 
+import PopUp from './PopUp.js';
 import Loader from './Loader.js';
 
 /**
@@ -13,11 +15,13 @@ import Loader from './Loader.js';
 export default class CourseDetails extends Component {
   state = {
     courseDetails: '',
+    seen: false,
   };
 
   componentDidMount() {
     const { context, match, history } = this.props;
     const { data } = context;
+
     data
       .getCourse(match.url)
       .then(courseData => {
@@ -26,7 +30,7 @@ export default class CourseDetails extends Component {
             courseDetails: courseData.course,
           });
         } else {
-          throw new Error();
+          history.push('/');
         }
       })
       .catch(err => {
@@ -61,6 +65,12 @@ export default class CourseDetails extends Component {
       });
   };
 
+  togglePop = () => {
+    this.setState(prevState => ({
+      seen: !prevState.seen,
+    }));
+  };
+
   render() {
     const { courseDetails } = this.state;
     // eslint-disable-next-line react/prop-types
@@ -76,6 +86,9 @@ export default class CourseDetails extends Component {
       <div>
         {courseDetails ? (
           <React.Fragment>
+            {this.state.seen ? (
+              <PopUp deleteCourse={this.deleteCourse} />
+            ) : null}
             <div className="actions--bar">
               <div className="bounds">
                 <div className="grid">
@@ -88,7 +101,7 @@ export default class CourseDetails extends Component {
                       <button
                         className="button"
                         type="submit"
-                        onClick={this.deleteCourse}
+                        onClick={this.togglePop}
                       >
                         Delete Course
                       </button>

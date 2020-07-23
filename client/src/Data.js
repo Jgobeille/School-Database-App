@@ -60,7 +60,7 @@ export default class Data {
 
       options.headers.Authorization = ` Basic ${encodedCredentials}`;
     }
-
+    console.log(url);
     return fetch(url, options);
   }
 
@@ -76,6 +76,7 @@ export default class Data {
     if (response.status === 200) {
       return response.json().then(data => data);
     }
+
     if (response.status === 401) {
       return null;
     }

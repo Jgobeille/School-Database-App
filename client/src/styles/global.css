@@ -780,12 +780,13 @@ input:focus {
 .diamond-logo {
   height: 50px;
   width: 50px;
-  margin: 0 10px 0 0;
+  margin: 10px 10px 0 0;
 }
 
 .course-item{
   width: 33.3%;
 }
+
 
 /* Sign-in and form page */
 
@@ -868,6 +869,37 @@ input:focus {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Pop-up/modal window */
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal_content {
+  background-color: white;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.close {
+  color: Black;
+  float: right;
+}
+
+.close:hover {
+  color: cyan;
+  cursor: pointer;
 }
 
 /* Media Queries */
