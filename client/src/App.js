@@ -8,7 +8,7 @@ import NotFound from './components/NotFound';
 import Forbidden from './components/Forbidden';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
-import UnhandledError from './components/Error';
+import UnhandledError from './components/UnhandledError';
 import UserSignOut from './components/UserSignOut';
 import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';

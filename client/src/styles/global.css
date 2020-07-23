@@ -207,6 +207,8 @@ body {
 
 /* line 13, ../sass/global.sass */
 .header {
+  z-index: 2;
+  position: relative;
   background: #57496e;
   padding: 0 0 20px 0;
   margin-bottom: 30px;
@@ -815,6 +817,54 @@ input:focus {
   flex-flow: row nowrap;
 
 }
+
+/* NotFound page */
+#overlay {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  color: #FFFFFF;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+}
+
+.notFoundPage {
+  /* margin-top: -50px; */
+  background: url("../images/steven-universe-car-end-credits.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* height: 90vh; */
+}
+
+.unhandledErrorPage {
+  /* margin-top: -50px; */
+  background: url("../images/SU-hand.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* height: 90vh; */
+  width: 100%;
+}
+
+.forbiddenPage {
+  /* margin-top: -50px; */
+  background: url("../images/SUF-monsters.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* height: 90vh; */
+  width: 100%;
+}
+
 
 /* Loader */
 
