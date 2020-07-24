@@ -1,3 +1,23 @@
+@font-face {
+  font-family: crystalUniverse-Regular;
+  src: url(../fonts/CrystalUniverse-Oblique.ttf);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* CSS Vars */
+:root {
+  --main-color:#FA74BF;
+  --fiery-rose: #FB5B68;
+  --baby-powder: #FBFBF2;
+  --lapis-lazuli: #2676A1;
+  --maximum-purple: #7D387D;
+  --sonic-silver: #706F6F;
+  --corn: #FFEB48;
+
+
+}
+
 /* line 7, ../sass/reset.sass */
 a,
 abbr,
@@ -202,25 +222,36 @@ svg {
 /* line 5, ../sass/global.sass */
 body {
   font-family: "Work Sans", sans-serif;
-  background: #fff;
+  background: var(--baby-powder);
 }
 
 /* line 13, ../sass/global.sass */
 .header {
   z-index: 2;
   position: relative;
-  background: #57496e;
+  background: var(--main-color);
   padding: 0 0 20px 0;
   margin-bottom: 30px;
 }
 /* line 17, ../sass/global.sass */
 .header--logo {
-  color: #fff;
-  font-size: 24px;
+  letter-spacing: 2px;
+  color: var(--baby-powder);
+  font-size: 1em;
   padding: 0 15px;
   margin: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.header--logo a {
+  font-family: crystalUniverse-Regular;
+
+}
+
+#root > div > div.header > div > nav > a, #root > div > div.header > div > nav > span {
+  font-family: 'Fredoka One', cursive;
+
 }
 /* line 23, ../sass/global.sass */
 .header--logo a {
@@ -228,11 +259,11 @@ body {
 }
 /* line 25, ../sass/global.sass */
 .header--logo a:hover {
-  color: #fff;
+  color: var(--corn);
 }
 /* line 27, ../sass/global.sass */
 .header--logo .selected {
-  color: #fff;
+  color: var(--baby-powder);
 }
 /* line 29, ../sass/global.sass */
 .header--logo .chevron {
@@ -254,13 +285,13 @@ body {
 }
 /* line 40, ../sass/global.sass */
 .header nav a:hover {
-  color: #fff;
+  color: var(--corn);
 }
 
 /* line 44, ../sass/global.sass */
 .actions--bar {
-  border-bottom: 1px solid #d5f9fe;
-  background: #f8feff;
+  border-bottom: 1px solid var(--lapis-lazuli);
+  background: var(--lapis-lazuli);
   padding: 20px 0;
   margin-top: -30px;
 }
@@ -342,7 +373,7 @@ p {
 
 /* line 102, ../sass/global.sass */
 .course--module {
-  background: #7c689b;
+  background: var(--main-color);
   border-radius: 8px;
   padding: 30px;
   margin-bottom: 30px;
@@ -378,7 +409,7 @@ p {
 /* line 123, ../sass/global.sass */
 .course--title {
   font-size: 18px;
-  color: #fff;
+  color: var(--baby-powder);
 }
 /* line 126, ../sass/global.sass */
 .course--link {
@@ -596,7 +627,7 @@ textarea {
   width: 100%;
   min-height: 300px;
   border-radius: 8px;
-  background: #fff;
+  background: var(--baby-powder);
   padding: 15px;
   font-size: 16px;
   margin: 0 0 20px;
@@ -684,8 +715,7 @@ input:focus {
 
 /* line 507, ../sass/global.sass */
 .button {
-  background: #7c689b;
-  color: #fff;
+  color: var(--baby-powder);
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
   padding: 15px 30px;
@@ -739,7 +769,7 @@ input:focus {
 
 /* styles the signed in user's name in the header */
 .header nav span {
-  color: #fff;
+  color: var(--baby-powder);
   margin-left: 20px;
 }
 
@@ -787,6 +817,8 @@ input:focus {
 
 .course-item{
   width: 33.3%;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 2px;
 }
 
 
@@ -810,6 +842,24 @@ input:focus {
   justify-content: center;
 }
 
+.actions--bar--only-button .button-secondary {
+  color: var(--fiery-rose);
+  box-shadow: 0 0 0 2px var(--fiery-rose) inset;
+}
+
+.actions--bar--buttons a, .actions--bar--buttons button {
+  color: var(--fiery-rose);
+  box-shadow: 0 0 0 2px var(--fiery-rose) inset;
+  background: none;
+}
+
+.actions--bar--buttons .button:hover, .actions--bar--buttons .button-secondary:hover {
+  background: none;
+  color: var(--fiery-rose);
+  box-shadow: 0 0 0 2px var(--fiery-rose) inset;
+  cursor: pointer;
+}
+
 /* course Update Page */
 
 .course--form {
@@ -824,7 +874,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: #FFFFFF;
+  color: var(--baby-powder)FFF;
   justify-content: center;
   top: 0;
   bottom: 0;
@@ -841,6 +891,27 @@ input:focus {
   -o-background-size: cover;
   background-size: cover;
   /* height: 90vh; */
+}
+
+.notFoundPage p, .unhandledErrorPage p, .forbiddenPage p {
+  text-align: center;
+  font-family: crystalUniverse-Regular;
+  letter-spacing: 2px;
+}
+
+.notFoundPage h1, .unhandledErrorPage h1, .forbiddenPage h1 {
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  font-size: 10vw;
+  letter-spacing: 10px;
+  color: pink;
+  -webkit-text-stroke-width: .5vw;
+  -webkit-text-stroke-color: black;
+}
+
+.notFoundPage p, .unhandledErrorPage p, .forbiddenPage p {
+  
+  line-height: 2.5;
 }
 
 .unhandledErrorPage {
@@ -924,33 +995,57 @@ input:focus {
 /* Pop-up/modal window */
 
 .modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   width: 100%;
   height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.25);
 }
 
 .modal_content {
+  order: 1;
+  display: flex;
+  justify-content: center;
   background-color: white;
   position: absolute;
-  top: 20%;
-  left: 30%;
-  width: 40%;
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
   border-radius: 5px;
   border: 2px solid black;
 }
 
 .close {
+  order: 2;
   color: Black;
-  float: right;
+  font-size: 24px;
+  margin-top: -20px;
+  padding-left: 5px;
 }
 
 .close:hover {
   color: cyan;
   cursor: pointer;
 }
+
+.modal_content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_content h3 {
+  margin-bottom: 10px;
+}
+
+.modal_content button {
+  margin: 0 auto;
+}
+
 
 /* Media Queries */
 /* Portrait and Landscape */
@@ -971,12 +1066,16 @@ input:focus {
     flex-direction: column;
   }
 
+
   .header nav, .header nav a, .header nav span {
+    font-family: 'Fredoka One', cursive !important;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
 
   }
+
+
 
   .header nav span {
     margin-top: 10px;

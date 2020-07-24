@@ -87,7 +87,7 @@ export default class CourseDetails extends Component {
         {courseDetails ? (
           <React.Fragment>
             {this.state.seen ? (
-              <PopUp deleteCourse={this.deleteCourse} />
+              <PopUp toggle={this.togglePop} deleteCourse={this.deleteCourse} />
             ) : null}
             <div className="actions--bar">
               <div className="bounds">
