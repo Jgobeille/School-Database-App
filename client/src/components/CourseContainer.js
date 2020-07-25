@@ -14,6 +14,8 @@ const CourseContainer = ({ courses }) => (
       courses.map(course => (
         <Course
           key={course.id}
+          firstName={course.user.firstName}
+          lastName={course.user.lastName}
           title={course.title}
           url={`/courses/${course.id}`}
         />

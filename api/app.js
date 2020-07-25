@@ -51,10 +51,9 @@ const sequelize = new Sequelize({
   }
 })();
 
-sequelize.sync().then(() => {
+sequelize.sync({force: true}).then(() => {
   console.log("All Models were synced");
-});
-
+})
 // setup a friendly greeting for the root route
 app.get("/", (req, res) => {
   res.json({
