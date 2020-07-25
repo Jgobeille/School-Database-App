@@ -60,7 +60,6 @@ export default class Data {
 
       options.headers.Authorization = ` Basic ${encodedCredentials}`;
     }
-    console.log(url);
     return fetch(url, options);
   }
 
