@@ -9,11 +9,15 @@
 :root {
   --main-color:#FA74BF;
   --fiery-rose: #FB5B68;
+  --fiery-rose-light: #FDAFB6;
   --baby-powder: #FBFBF2;
   --lapis-lazuli: #2676A1;
   --maximum-purple: #7D387D;
+  --maximum-purple-light: #CC8ECC;
   --sonic-silver: #706F6F;
   --corn: #FFEB48;
+  --fredoka:'Fredoka One', cursive;
+  --crystal-font: crystalUniverse-Regular;
 
 
 }
@@ -317,7 +321,7 @@ h1 {
 
 /* line 61, ../sass/global.sass */
 a {
-  color: #7c689b;
+  color: var(--maximum-purple-light);
   cursor: pointer;
   text-decoration: none;
   -webkit-transition: color 0.2s;
@@ -399,7 +403,7 @@ p {
 }
 /* line 116, ../sass/global.sass */
 .course--label {
-  font-family: "Cousine";
+  font-family: var(--fredoka);
   font-size: 14px;
   font-weight: 100;
   color: rgba(255, 255, 255, 0.5);
@@ -465,18 +469,23 @@ p {
 /* line 164, ../sass/global.sass */
 .course--header .course--label {
   font-size: 18px;
-  color: #999;
+  color: var(--sonic-silver);
+
 }
 /* line 167, ../sass/global.sass */
 .course--header .course--title {
-  font-size: 48px;
+  color: var(--fiery-rose);
+  font-size: 24px;
+  font-family: crystalUniverse-Regular;
+  letter-spacing: 2px;
+  line-height: 2;
   margin-bottom: 15px;
-  color: #332a40;
 }
 /* line 171, ../sass/global.sass */
 .course--header p {
+  font-family: var(--fredoka);
   font-size: 18px;
-  color: #b1a5c4;
+  color: var(--maximum-purple-light);
   font-weight: 100;
 }
 /* line 176, ../sass/global.sass */
@@ -577,9 +586,9 @@ p {
 }
 /* line 287, ../sass/global.sass */
 .course--stats--list h4 {
-  font-family: "Cousine";
+  font-family: var(--fredoka);
   font-weight: 100;
-  color: #999;
+  color: var(--sonic-silver);
   font-size: 14px;
   padding: 0 0 10px;
   margin-bottom: 10px;
@@ -627,11 +636,11 @@ textarea {
   width: 100%;
   min-height: 300px;
   border-radius: 8px;
-  background: var(--baby-powder);
+  background: #fff;
   padding: 15px;
   font-size: 16px;
   margin: 0 0 20px;
-  border: 1px solid #ccc4d8;
+  border: 1px solid var(--maximum-purple-light);
   color: #666;
   line-height: 1.8;
   outline: none;
@@ -660,15 +669,15 @@ textarea:-ms-input-placeholder {
 }
 /* line 485, ../sass/global.sass */
 textarea:focus {
-  border-color: #7c689b;
+  border-color: var(--maximum-purple);
 }
 
 /* line 488, ../sass/global.sass */
 input {
   width: 100%;
-  color: #332a40;
+  color: #666;
   border-radius: 8px;
-  border: 1px solid #ccc4d8;
+  border: 1px solid var(--maximum-purple-light);
   padding: 15px;
   margin-bottom: 15px;
   outline: none;
@@ -693,7 +702,7 @@ input:-ms-input-placeholder {
 }
 /* line 500, ../sass/global.sass */
 input:focus {
-  border-color: #7c689b;
+  border-color: var(--maximum-purple);
 }
 
 /* line 29, ../sass/mixins.sass */
@@ -716,6 +725,7 @@ input:focus {
 /* line 507, ../sass/global.sass */
 .button {
   color: var(--baby-powder);
+  background: var(--maximum-purple);
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
   padding: 15px 30px;
@@ -737,14 +747,14 @@ input:focus {
 }
 /* line 522, ../sass/global.sass */
 .button:not(.button-secondary):hover {
-  background: #63537d;
+  background: var(--fiery-rose)
 }
 
 /* line 525, ../sass/global.sass */
 .button-secondary {
-  color: #7c689b;
+  color: var(--maximum-purple);
   background: none;
-  box-shadow: 0 0 0 2px #7c689b inset;
+  box-shadow: 0 0 0 2px var(--maximum-purple) inset;
   -webkit-transition: box-shadow 0.2s, color 0.2s;
   -moz-transition: box-shadow 0.2s, color 0.2s;
   -ms-transition: box-shadow 0.2s, color 0.2s;
@@ -753,8 +763,8 @@ input:focus {
 }
 /* line 530, ../sass/global.sass */
 .button-secondary:hover {
-  color: #63537d;
-  box-shadow: 0 0 0 2px #63537d inset;
+  color: var(--fiery-rose);
+  box-shadow: 0 0 0 2px var(--fiery-rose) inset;
 }
 
 /* adds additional padding to the bottom of an element */
@@ -829,8 +839,15 @@ input:focus {
   width: 50%
 }
 
+.centered-signin h1 {
+  font-family: var(--crystal-font);
+  color: var(--fiery-rose);
+  padding-bottom: 20px;
+  letter-spacing: 2px;
+}
+
 .submit-button {
-  margin:0 10px 10px 0;
+  margin:0 10px 10px 15px;
 
 }
 
@@ -858,6 +875,17 @@ input:focus {
   color: var(--fiery-rose);
   box-shadow: 0 0 0 2px var(--fiery-rose) inset;
   cursor: pointer;
+}
+
+/* Course Create Page */
+.course--page--name {
+  font-family: var(--crystal-font);
+  color: var(--fiery-rose);
+  padding-bottom: 20px;
+  letter-spacing: 2px;
+  line-height: 2;
+  padding-left: 15px;
+
 }
 
 /* course Update Page */
@@ -904,13 +932,13 @@ input:focus {
   text-align: center;
   font-size: 10vw;
   letter-spacing: 10px;
-  color: pink;
+  color: var(--main-color);
   -webkit-text-stroke-width: .5vw;
   -webkit-text-stroke-color: black;
 }
 
 .notFoundPage p, .unhandledErrorPage p, .forbiddenPage p {
-  
+  color: var(--baby-powder);
   line-height: 2.5;
 }
 
@@ -959,7 +987,7 @@ input:focus {
   height: 100%;
   fill: none;
   stroke-width: 10;
-  stroke: #01cdfe;
+  stroke: var(--fiery-rose);
   stroke-linecap: round;
   transform: translate(5px, 5px);
   stroke-dasharray: 440;
@@ -1068,7 +1096,7 @@ input:focus {
 
 
   .header nav, .header nav a, .header nav span {
-    font-family: 'Fredoka One', cursive !important;
+    font-family: 'Fredoka One', cursive ;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -1135,10 +1163,14 @@ input:focus {
 
 .course--page--name {
   text-align: center;
+  padding-left: 0;
 
 }
 
+.submit-button {
+  margin:0 10px 10px 0px;
 
+}
 
 
 }
