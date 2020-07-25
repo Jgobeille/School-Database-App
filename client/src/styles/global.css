@@ -785,11 +785,16 @@ input:focus {
 
 /* styles the validation errors */
 .validation--errors--label {
-  color: #7c689b;
+  padding: 15px 0 0px 10px;
+  font-family: var(--fredoka);
+  letter-spacing: 1px;
+  color: var(--maximum-purple);
   font-size: 28px;
 }
 .validation-errors ul {
-  color: #7c689b;
+  color: var(--maximum-purple);
+  font-family: var(--fredoka);
+  letter-spacing: 1px;
   padding: 15px 0 40px 10px;
 }
 
@@ -1173,6 +1178,12 @@ input:focus {
 .submit-button {
   margin:0 10px 10px 0px;
 
+}
+
+/* Validation Errors */
+
+.validation--errors--label, .validation-errors {
+  text-align: center;
 }
 
 
