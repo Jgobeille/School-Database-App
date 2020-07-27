@@ -61,7 +61,7 @@ export default class Data {
 
       options.headers.Authorization = ` Basic ${encodedCredentials}`;
     }
-    return fetch(`${url}/https://school-database-app.vercel.app/`, options);
+    return fetch(url, { mode: 'no-cors' }, options);
   }
 
   /**
