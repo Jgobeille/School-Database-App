@@ -30,6 +30,7 @@ export default class Data {
       method,
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
+        mode: 'no-cors',
       },
     };
 
