@@ -1,3 +1,3 @@
 export default {
-  apiBaseUrl: 'https://school-database-api.herokuapp.com/api/',
+  apiBaseUrl: 'https://school-database-api.herokuapp.com/api',
 };
